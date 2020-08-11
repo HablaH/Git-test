@@ -2,29 +2,37 @@ body {
     background-color:rgba(39, 88, 248, 0.945) ;
 }
 
-img {
-    width: auto;
-    height: auto;
+#logo {
+    float: left;
+    width: 96px;
+    height: 211px; 
+    padding-top: 65px;
 }
 h1 {
-    color: rgb(255, 0, 0)61, 161);
+    color: rgb(0, 0, 0);
     text-align: center;
+    size: 500%;
 }
 p {
     font-family: monospace;
 }
-a:link, a:visited {
+#meny a:link, a:visited {
     background-color: #f44336;
     color: white;
     padding: 15px 25px;
+    width: 80px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    height: ;
-    width: 80px ;
+    
     color:black;
   }
   
   a:hover, a:active {
     background-color: red;
   }
+#meny {
+    list-style-type: none;
+    height: 211px;
+    
+}
