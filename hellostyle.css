@@ -1,0 +1,28 @@
+body {
+    background-color:rgba(119, 241, 135, 0.459) ;
+}
+
+img {
+    width: auto;
+    height: auto;
+}
+h1 {
+    color: rgb(255, 0, 0)61, 161);
+    text-align: center;
+}
+p {
+    font-family: monospace;
+    border: salmon 4px solid;
+}
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  a:hover, a:active {
+    background-color: red;
+  }
