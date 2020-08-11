@@ -1,5 +1,5 @@
 body {
-    background-color:rgba(119, 241, 135, 0.459) ;
+    background-color:rgba(119, 147, 241, 0.575) ;
 }
 
 img {
@@ -12,7 +12,6 @@ h1 {
 }
 p {
     font-family: monospace;
-    border: salmon 4px solid;
 }
 a:link, a:visited {
     background-color: #f44336;
