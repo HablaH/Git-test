@@ -1,22 +1,64 @@
 body {
-    background-color:rgba(39, 88, 248, 0.945) ;
+    padding: 0;
+    margin: 0;
 }
 
-#logo {
-    float: left;
-    width: 96px;
-    height: 211px; 
-    padding-top: 65px;
+div.page {
+    display: grid;
+    grid-template-columns: 10vw 10vw 80vw;
+    grid-template-rows: 10vh 80vh 10vh;
+    grid-template-areas: "logo header header" "logo menu mainContent" "footer footer footer";
 }
+
+div.header {
+    background-color: rgba(0, 128, 0, 0);
+    grid-area: header;
+    text-align: left;
+    margin-left: 2%;
+}
+
+div.logo {
+    background-color: rgba(255, 255, 0, 0);
+    grid-area: logo;
+}
+
+div.menu {
+    background-color: rgba(255, 0, 0, 0);
+    grid-area: menu;
+}
+
+div.mainContent {
+    background-color: rgba(128, 0, 128, 0);
+    grid-area: mainContent;
+}
+
+div.imgMain {
+    grid-area: imgMain;
+    text-align: center;
+}
+
+div.footer {
+    background-color: rgba(144, 238, 144, 0);
+    grid-area: footer;
+}
+
+body {
+    background-color: rgba(39, 88, 248, 0.945);
+}
+
 h1 {
     color: rgb(0, 0, 0);
     text-align: center;
-    size: 500%;
 }
-p {
-    font-family: monospace;
+
+#logo {
+    object-fit: cover;
+    width: 100%;
+    max-height: 100%;
 }
-#meny a:link, a:visited {
+
+#meny a:link,
+a:visited {
     background-color: #f44336;
     color: white;
     padding: 15px 25px;
@@ -24,15 +66,15 @@ p {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    
-    color:black;
-  }
-  
-  a:hover, a:active {
+    color: black;
+}
+
+a:hover,
+a:active {
     background-color: red;
-  }
+}
+
 #meny {
     list-style-type: none;
-    height: 211px;
-    
+    text-align: center;
 }
