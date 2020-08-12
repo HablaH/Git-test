@@ -34,7 +34,6 @@ div.mainContent {
 
 div.imgMain {
     grid-area: imgMain;
-    text-align: center;
 }
 
 div.footer {
