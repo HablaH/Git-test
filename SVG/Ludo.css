@@ -3,3 +3,27 @@ rect.tileW {
     fill: rgb(255, 255, 255);
     stroke: rgb(0, 0, 0);
 }
+
+rect.tileR {
+    stroke-width: 1;
+    fill: rgb(255, 255, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+rect.tileB {
+    stroke-width: 1;
+    fill: rgb(255, 255, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+rect.tileY {
+    stroke-width: 1;
+    fill: rgb(255, 255, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+rect.tileG {
+    stroke-width: 1;
+    fill: rgb(255, 255, 255);
+    stroke: rgb(0, 0, 0);
+}
