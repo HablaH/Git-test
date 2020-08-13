@@ -6,8 +6,8 @@ body {
 div.page {
     display: grid;
     grid-gap: 1%;
-    grid-template-columns: 10vw 10vw 80vw;
-    grid-template-rows: 10vh 80vh 10vh;
+    grid-template-columns: 1fr 1fr 8fr;
+    grid-template-rows: 1fr 8fr 1fr;
     grid-template-areas: "logo header header" "logo menu mainContent" "footer footer footer";
 }
 
@@ -77,4 +77,20 @@ a:active {
 #meny {
     list-style-type: none;
     text-align: center;
+}
+
+.mainContent p {
+    width: 50%;
+    border: 1px solid black;
+    margin: 20px;
+    /* 100 = view port width, as 1vw = 1/100th of that
+       So if the container is 50% of view port (as here)
+       then factor that into how you want it to size.
+       Let's say you like 5vw if it were the whole width,
+       then for this container, size it at 2.5vw (5 * .5 [i.e. 50%])
+    */
+    font-size: 2.5vw;
+}
+
+
 }
