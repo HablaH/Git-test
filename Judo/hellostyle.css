@@ -1,10 +1,11 @@
 body {
-    padding: 0;
-    margin: 0;
+    padding: 10px;
+    margin: 10px;
 }
 
 div.page {
     display: grid;
+    grid-gap: 1%;
     grid-template-columns: 10vw 10vw 80vw;
     grid-template-rows: 10vh 80vh 10vh;
     grid-template-areas: "logo header header" "logo menu mainContent" "footer footer footer";
