@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <link rel="stylesheet" href="LudoStyleR.css">
+    <title>LUDO</title>
+
+</head>
+
+<body>
+    <div>
+        <h1>
+            LUDO
+        </h1>
+        <hr>
+    </div>
+
+    <div>
+        <svg width="500" height="500" viewbox="0 0 250 250">
+        <!--Board base-->
+        <rect class="board1" width="250" height="250"/>
+        <rect class="board2" width="240" height="240" x="5" y="5"/>
+        
+            <svg class="main" width="500" height="500">
+
+                <!--white tiles-->
+                <rect class="tileW" x="117" y="5" width="16" height="16" />
+                <rect class="tileW" x="133" y="5" width="16" height="16" />
+                <rect class="tileW" x="101" y="5" width="16" height="16" />
+                <rect class="tileW" x="101" y="21" width="16" height="16" />
+                <rect class="tileW" x="101" y="37" width="16" height="16" />
+                <rect class="tileW" x="101" y="53" width="16" height="16" />
+                <rect class="tileW" x="101" y="69" width="16" height="16" />
+                <rect class="tileW" x="101" y="85" width="16" height="16" />
+                <rect class="tileW" x="133" y="37" width="16" height="16" />
+                <rect class="tileW" x="133" y="53" width="16" height="16" />
+                <rect class="tileW" x="133" y="69" width="16" height="16" />
+                <rect class="tileW" x="133" y="85" width="16" height="16" />
+    
+    
+                <!--red tiles-->
+                <rect class="tileR" x="117" y="21" width="16" height="16" />
+                <rect class="tileR" x="133" y="21" width="16" height="16" />
+                <rect class="tileR" x="117" y="37" width="16" height="16" />
+                <rect class="tileR" x="117" y="53" width="16" height="16" />
+                <rect class="tileR" x="117" y="69" width="16" height="16" />
+                <rect class="tileR" x="117" y="85" width="16" height="16" />
+    
+    
+                <!--spawnRed-->
+                <circle class="spawnR" cx="197" cy="53" r="32" />
+                <circle class="spawntile" cx="184" cy="40" r="7" />
+                <circle class="spawntile" cx="210" cy="40" r="7" />
+                <circle class="spawntile" cx="184" cy="65" r="7" />
+                <circle class="spawntile" cx="210" cy="65" r="7" />
+    
+    
+                <!--goalRed-->
+                <polygon class="goalR" points="125,125 101,101 149,101" />
+    
+            </svg>
+
+        </svg>
+
+
+
+    </div>
+</body>
+
+</html>

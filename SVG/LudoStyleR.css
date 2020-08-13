@@ -1,0 +1,95 @@
+rect.board1 {
+    fill: rgb(250, 168, 168);
+    stroke-width: 3;
+    stroke: rgb(0, 0, 0);
+}
+
+rect.board2 {
+    fill: rgb(252, 238, 177);
+    stroke-width: 1;
+    stroke: rgb(0, 0, 0);
+}
+
+rect.tileW {
+    stroke-width: 1;
+    fill: rgb(255, 255, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+rect.tileR {
+    stroke-width: 1;
+    fill: rgb(255, 0, 0);
+    stroke: rgb(0, 0, 0);
+}
+
+rect.tileB {
+    stroke-width: 1;
+    fill: rgb(0, 0, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+rect.tileY {
+    stroke-width: 1;
+    fill: rgb(255, 255, 0);
+    stroke: rgb(0, 0, 0);
+}
+
+rect.tileG {
+    stroke-width: 1;
+    fill: rgb(0, 255, 0);
+    stroke: rgb(0, 0, 0);
+}
+
+circle.spawnR {
+    stroke-width: 1;
+    fill: rgb(255, 0, 0);
+    stroke: rgb(0, 0, 0);
+}
+
+circle.spawnB {
+    stroke-width: 1;
+    fill: rgb(0, 0, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+circle.spawnY {
+    stroke-width: 1;
+    fill: rgb(255, 255, 0);
+    stroke: rgb(0, 0, 0);
+}
+
+circle.spawnG {
+    stroke-width: 1;
+    fill: rgb(0, 255, 0);
+    stroke: rgb(0, 0, 0);
+}
+
+circle.spawntile {
+    stroke-width: 1;
+    fill: rgb(255, 255, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+polygon.goalR {
+    stroke-width: 1;
+    fill: rgb(255, 0, 0);
+    stroke: rgb(0, 0, 0);
+}
+
+polygon.goalB {
+    stroke-width: 1;
+    fill: rgb(0, 0, 255);
+    stroke: rgb(0, 0, 0);
+}
+
+polygon.goalY {
+    stroke-width: 1;
+    fill: rgb(255, 255, 0);
+    stroke: rgb(0, 0, 0);
+}
+
+polygon.goalG {
+    stroke-width: 1;
+    fill: rgb(0, 255, 0);
+    stroke: rgb(0, 0, 0);
+}
