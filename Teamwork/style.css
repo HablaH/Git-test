@@ -1,0 +1,88 @@
+div.page {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 500px 500px;
+    grid-template-rows: 500px 500px;
+    grid-template-areas: 'Mads Ayla' 'Seline Harald';
+}
+
+
+/* Harald*/
+
+div.Harald {
+    border: black dashed 2px;
+}
+
+.skin {
+    fill: rgb(255, 219, 101);
+    stroke-width: 1px;
+    stroke: rgb(197, 169, 77);
+}
+
+ellipse.eye {
+    fill: white;
+    stroke-width: 1px;
+    stroke: rgb(197, 169, 77);
+}
+
+polygon.lip {
+    fill: rgb(250, 57, 23);
+}
+
+circle.eye {
+    fill: black;
+}
+
+rect.sq1 {
+    fill: lightblue;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+
+/* Mads*/
+
+div.Mads {
+    padding: 0;
+    margin: 0;
+    width: 1fr;
+    height: 1fr;
+    background-color: red;
+}
+
+
+/* Seline*/
+
+div.Seline {
+    width: 1fr;
+    height: 1fr;
+    border: 20px solid pink;
+    background-color: palevioletred;
+}
+
+
+/* Ayla */
+
+div.Ayla {
+    background-color: darksalmon;
+}
+
+.head {
+    fill: wheat;
+}
+
+.left {
+    stroke-width: 4;
+    stroke: white;
+    fill: black
+}
+
+.right {
+    stroke-width: 4;
+    stroke: white;
+    fill: black
+}
+
+.cap {
+    fill: red;
+}

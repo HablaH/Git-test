@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>JS test</title>
+    <script src="test.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <h1>Her kommer en oppgave</h1>
+        <h2>Trykk på knappene for å vise en korresponderende figur</h2>
+    </div>
+
+    <div class="button">
+        <!--Knapper er her-->
+        <div id="c1">
+            <button onclick="ClickChange('rect')">Firkant</button>
+        </div>
+        <div id="c2">
+            <button onclick="ClickChange('circ')">Sirkel</button>
+        </div>
+        <div id="c3">
+            <button onclick="ClickChange('tri')">Trekant</button>
+        </div>
+    </div>
+
+    <div>
+        <!--Figurer er her-->
+        <div id="rect" style="display: none;">
+            <svg width="100" height="100">
+        <rect x="25" y="25" height="50" width="50" style="fill:blue;"/>
+    </svg>
+        </div>
+        <div id="circ" style="display: none;">
+            <svg width="100" height="100">
+        <circle cx="50" cy="50" r="25" style="fill:rgb(255, 0, 0);"/>
+    </svg>
+        </div>
+        <div id="tri" style="display: none;">
+            <svg width="100" height="100">
+        <polygon points="50,25 20,70 80,70" style="fill:green;"/>
+    </svg>
+        </div>
+    </div>
+
+    <div>
+        <h1>Hvor gammel er Kongen</h1>
+        <div>
+            <ol>
+                <li>76</li>
+                <li>83</li>
+                <li>69</li>
+            </ol>
+        </div>
+    </div>
+
+</body>
+
+</html>
