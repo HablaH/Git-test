@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.11.1.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.11.1.js"></script>
+    <script src="lib.js"></script>
+    <script>
+        QUnit.test("fix - 'terje'", function (assert) {
+            const actual = fixText('terje');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - 'terje '", function (assert) {
+            const actual = fixText('terje ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - ' terje'", function (assert) {
+            const actual = fixText(' terje');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - ' terje '", function (assert) {
+            const actual = fixText(' terje ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - ' tErJe '", function (assert) {
+            const actual = fixText(' tErJe ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - 'TERJE   '", function (assert) {
+            const actual = fixText('TERJE   ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - 'TE  R J E   '", function (assert) {
+            const actual = fixText('TE  R J E   ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - '    te  R j E   '", function (assert) {
+            const actual = fixText('    te  R j E   ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+    </script>
+</body>
+</html>
