@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.11.1.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.11.1.js"></script>
+    <script src="lib.js"></script>
+    <script>
+        QUnit.test("sjekker dato '03.09.2020'", function (assert) {
+            const actual = isDateValid('03.09.2020');
+            const expected = true;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato lengde '123.123.123213'", function (assert) {
+            const actual = isDateValid('123.123.123213');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato feil punkt '03,09:2020'", function (assert) {
+            const actual = isDateValid('03,09:2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato mellomrom istedenfor punkt '03 09 2020'", function (assert) {
+            const actual = isDateValid('03 09 2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato årets lengde '03.09.202'", function (assert) {
+            const actual = isDateValid('03.09.202');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato årets lengde '03.09.20202'", function (assert) {
+            const actual = isDateValid('03.09.20202');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato måned er ikke 2'03.093.2020'", function (assert) {
+            const actual = isDateValid('03.093.2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato '03.ab.2020'", function (assert) {
+            const actual = isDateValid('03.ab.2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato måned utenfor 1-12 '03.00.2020'", function (assert) {
+            const actual = isDateValid('03.00.2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato måned utenfor 1-12 '03.13.2020'", function (assert) {
+            const actual = isDateValid('03.13.2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato dag 31 i januar '31.01.2020'", function (assert) {
+            const actual = isDateValid('31.01.2020');
+            const expected = true;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato dag over 31 '32.01.2020'", function (assert) {
+            const actual = isDateValid('32.01.2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato 31 dager for feil måned  '31.09.2020'", function (assert) {
+            const actual = isDateValid('31.09.2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato 30 dager februar '30.02.2020'", function (assert) {
+            const actual = isDateValid('30.02.2020');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato 29 dager februar '29.02.2018'", function (assert) {
+            const actual = isDateValid('29.02.2018');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+        QUnit.test("sjekker dato 29 dager februar '29.02.2020'", function (assert) {
+            const actual = isDateValid('29.02.2020');
+            const expected = true;
+            assert.equal(actual, expected);
+        });
+        
+        
+
+    </script>
+</body>
+</html>

@@ -12,8 +12,50 @@
     <script src="https://code.jquery.com/qunit/qunit-2.11.1.js"></script>
     <script src="mailCheck.js"></script>
     <script>
-        QUnit.test("contains @", function (assert) {
+        QUnit.test("mailCheck - has @", function (assert) {
             const actual = emailCheck('harald@getacademy.no');
+            const expected = true;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("mailCheck - no @", function (assert) {
+            const actual = emailCheck('haraldgetacademy.no');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("spaceCheck - has 'spaces'", function (assert) {
+            const actual = spaceCheck('harald@getacademy.no');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("spaceCheck - has 'spaces'", function (assert) {
+            const actual = spaceCheck('har ald@getacademy.no');
+            const expected = true;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("spaceCheck - has 'spaces'", function (assert) {
+            const actual = spaceCheck('ha rald@geta cademy. no');
+            const expected = true;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("dotCheck - has '. before and after @'", function (assert) {
+            const actual = dotCheck('harald.salmelid@getacademy.no');
+            const expected = true;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("dotCheck - has '. before and after @'", function (assert) {
+            const actual = dotCheck('haraldsalmelid@getacademy.no');
+            const expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("dotCheck - has '. before and after @'", function (assert) {
+            const actual = dotCheck('harald.salme.lid@getac.ademy.no');
             const expected = true;
             assert.equal(actual, expected);
         });

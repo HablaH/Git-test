@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib.js"></script>
+</head>
+<body>
+    <input id="datoInn" type="text"/><button id="send" onclick="sendInn(document.getElementById('datoInn').value)">send</button>
+    <div>bruk formatet dd.mm.yyyy</div>
+    <div>
+        <h3>tests</h3>
+        <button id="btn1" onclick="isDayValid()">dag</button>
+        <button id="btn2" onclick="isMndValid()">mnd</button>
+        <button id="btn3" onclick="isYearValid()">year</button>
+        <button id="btn4" onclick="validDot()">dot</button>
+    </div>
+</body>
+</html>
