@@ -20,7 +20,7 @@
         QUnit.test("sjekker dato lengde '123.123.123213'", function (assert) {
             const actual = isDateValid('123.123.123213');
             const expected = false;
-            assert.equal(actual, expected);
+            assert.equal(actual, expected);-
         });
         QUnit.test("sjekker dato feil punkt '03,09:2020'", function (assert) {
             const actual = isDateValid('03,09:2020');
