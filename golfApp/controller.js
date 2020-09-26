@@ -23,10 +23,12 @@ function drawFieldSelector() {
 function drawPlayers() {
     //input til navn + table konstruksjon for navnene som blir lagret i players array
     let table = ``;
+    let tr = ``
     for (let i = 0; i < players.length; i++) {
-        table += '<table><tr><td>' + players[i] + '</td></tr></table>'
+        tr += '<tr><td>' + players[i] + '</td></tr>'
     }
-    let html = `<input type="text" id="playerName name="playerName" value="Navn" oninput="playerAdd = this.value">
+    table = `<table><th>Spiller</th>${tr}</table>`
+    let html = `<input type="text" id="playerName name="playerName" value="" oninput="playerAdd = this.value">
                 <button onclick="addPlayer(playerAdd)">+</button><br><br>
                 <div>${table}</div><br><br>`
         ;
@@ -44,6 +46,7 @@ function startRound() {
     //går fra mainscreen til roundscreen
     main = false;
     roundOn = true;
+    createRoundArray();
     show();
 }
 
@@ -52,8 +55,14 @@ function drawRound() {
     //output er navn på valgt bane, hull med navigasjon.
     //players tabell med antall slag og par utregning skal legges til (roundPlayers()) 
     
-    html = `<h1> ${baner[selected][0]}</h1>
-            <div><button onclick="bytteHull(-1)"><</button><p>hull ${hull}</p><button onclick="bytteHull(+1)">></button></div>
+    html = `<h1>${baner[selected][0]}</h1>
+            <div style="display:flex">
+                <button onclick="bytteHull(-1)"><</button>
+                <p>Hull ${hull} Par ${baner[selected][hull]}</p>
+                <button onclick="bytteHull(+1)">></button>
+            </div>
+            <br><br>
+            ${roundPlayers()} 
             `;
 
 
@@ -71,22 +80,43 @@ function bytteHull(n) {
 }
 function roundPlayers() {
     //skal lage en tabell for players med knapper for antall kast og par-utregning
+    let table = ``;
+    let tr = ``;
     for (let i = 0; i < players.length; i++) {
-   
-        table += '<table><tr>' + '<td>' + players[i] + '</td></tr>' +
-            `<tr><td><input type="number" id="quantity" name="quantity" min="1"></td></tr>` +
-            `<tr><td></td></tr>` +
-                 '</table>';
+        let a = rundeListe[i][hull]
+        let b = (a) - (baner[selected][hull]);
+        tr += `<tr><td>${players[i]}</td>
+            <td><input type="number" id="antall" name="antall" min="0" value="${a}" oninput="setAntall(this.value, ${i})"></td>
+            <td>${b}</td><td>${regnUtTotal(i)}</td></tr>`
     }
-    
+    table = `<table><th>Navn</th><th>Score</th><th>Par</th><th>Total</th>${tr}</table>`
+    return table;
+}
+
+function setAntall(antall, i) {
+    rundeListe[i][hull] = antall;
+    show();
+}
+
+function regnUtTotal(n) {
+    let sum = 0;
+    for (let i = 1; i < baner[selected].length-1; i++) {
+        sum += (rundeListe[n][i]) - (baner[selected][i]);
+    }
+    return sum;
 }
 
 function createRoundArray() {
 //lager array der hver player er ett objekt med antall kast på hvert hull
     
-    let a = rundeListe;
-    for (let i = 0; i > players.length - 1; i++) {
-        a.push(players[i]);
+    
+    for (let i = 0; i < players.length; i++) {
+        rundeListe.push(players[i]);
+        rundeListe[i] = {};
+        for (let n = 1; n < baner[selected].length; n++) {
+           
+            rundeListe[i][n] = 0;
+        }
     }
         
 }
