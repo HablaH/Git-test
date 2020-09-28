@@ -15,6 +15,7 @@ const baner = [
 
 let main = true;
 let roundOn = false;
+let result = false;
 let hull = 1;
 let players = [];
 let playerAdd;

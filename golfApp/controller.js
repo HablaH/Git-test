@@ -1,7 +1,8 @@
 //controller
 function pickView() {
     if (main) { return drawMain(); }
-    else if (roundOn) { return drawRound(); }
+    if (roundOn) { return drawRound(); }
+    if (result) { return drawResult(); }
 }
 //main screen
 function drawMain() {
@@ -53,21 +54,50 @@ function startRound() {
 //Round screen
 function drawRound() {
     //output er navn på valgt bane, hull med navigasjon.
-    //players tabell med antall slag og par utregning skal legges til (roundPlayers()) 
+    //players tabell med antall slag og par utregning og total (roundPlayers())
+    //legge til knapp som avslutter spillet -> resultat
     
-    html = `<h1>${baner[selected][0]}</h1>
+    let html = `<h1>${baner[selected][0]}</h1>
             <div style="display:flex">
                 <button onclick="bytteHull(-1)"><</button>
                 <p>Hull ${hull} Par ${baner[selected][hull]}</p>
                 <button onclick="bytteHull(+1)">></button>
             </div>
             <br><br>
-            ${roundPlayers()} 
-            `;
-
-
+            ${roundPlayers()}
+            <br><br>
+            <button onclick="endRound()">Ferdig</button>
+`;
+    
     return html;
 }
+
+function sortTable() {
+    // sorterer tabellen laveste score ligger øverst
+    var table, rows, switching, i, a, b, x, y, shouldSwitch;
+    table = document.getElementById('scoreCard');
+    switching = true;
+    while (switching) {
+        switching = false;
+        rows = table.rows;        
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            a = rows[i];
+            b = rows[(i + 1)];
+            x = a.children[3];
+            y = b.children[3];
+            if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            a.parentNode.insertBefore(b, a);
+            switching = true;
+        }
+    }
+}
+
 function bytteHull(n) {
     //navigerer frem og tilbake mellom hullene ved hjelp av hull variabelen 
     let b = baner[selected];
@@ -79,7 +109,7 @@ function bytteHull(n) {
     show();
 }
 function roundPlayers() {
-    //skal lage en tabell for players med knapper for antall kast og par-utregning
+    //skal lage en tabell for players med knapper for antall kast og par-utregning + total
     let table = ``;
     let tr = ``;
     for (let i = 0; i < players.length; i++) {
@@ -87,9 +117,9 @@ function roundPlayers() {
         let b = (a) - (baner[selected][hull]);
         tr += `<tr><td>${players[i]}</td>
             <td><input type="number" id="antall" name="antall" min="0" value="${a}" oninput="setAntall(this.value, ${i})"></td>
-            <td>${b}</td><td>${regnUtTotal(i)}</td></tr>`
+            <td>${b}</td><td>${regnUtTotal(i)+b}</td></tr>`
     }
-    table = `<table><th>Navn</th><th>Score</th><th>Par</th><th>Total</th>${tr}</table>`
+    table = `<table id="scoreCard"><th>Navn</th><th>Score</th><th>Par</th><th>Total</th>${tr}</table>`
     return table;
 }
 
@@ -100,7 +130,7 @@ function setAntall(antall, i) {
 
 function regnUtTotal(n) {
     let sum = 0;
-    for (let i = 1; i < baner[selected].length-1; i++) {
+    for (let i = 1; i < hull; i++) {
         sum += (rundeListe[n][i]) - (baner[selected][i]);
     }
     return sum;
@@ -119,4 +149,28 @@ function createRoundArray() {
         }
     }
         
+}
+
+function endRound() {
+    roundOn = false;
+    result = true;
+
+    show();
+}
+
+function drawResult() {
+    let html = '';
+    let table = ``;
+    let tr = ``;
+    for (let i = 0; i < players.length; i++) {
+        tr += `<tr><td>${players[i]}</td>
+             <td>${regnUtTotal(i)}</td></tr>`
+    }
+    table = `<table id="scoreCard"><th>Navn</th><th>Total</th>${tr}</table>`
+
+    html = `<h1>${baner[selected][0]}</h1>
+            <br><br>
+            ${table}
+`
+    return html;
 }
