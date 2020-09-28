@@ -70,7 +70,7 @@ function drawExceptions() {
             <tr><th>hull#</th><th>par</th></tr>
             ${table}
             </table`
-    return html;        
+    return (exception == 0) ? '': html;        
 }
 
 function drawPlayers() {
