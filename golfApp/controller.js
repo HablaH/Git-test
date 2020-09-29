@@ -46,19 +46,47 @@ function drawFieldForm() {
         ${drawExceptions()}
         <br><br>
         <button onclick="saveField()">Lagre</button>
+        <button onclick="back()">Tilbake</button>
         
         `
     return html;
 }
+function saveField() {
+    //lagrer verdiene fra fieldForm i array baner
+    baner.push(saveFieldFunc());
+    fieldForm = false;
+    main = true;
+    show();
+
+}
+function saveFieldFunc() {
+    //lager en array av verdiene fra fieldForm
+    let a = [];
+    a.push(fieldAdd);
+    for (let i = 0; i < fieldHoles; i++) {
+        a.push(3);
+    }
+    for (let i = 0; i < exception; i++) {
+        let str = "index = document.getElementById('unntakIndex" + i + "')"
+        eval(str);
+        str = "par = document.getElementById('unntakPar" + i + "')"
+        eval(str);
+        a.splice(parseInt(index.value), 1, parseInt(par.value))
+    }
+    return a;
+}
 
 //hjelpefunksjoner til fieldForm
 function exceptionCount(n) {
+    //teller opp og ned på exception, kan ikke gå under 0
     exception = (exception + n);
     if (exception < 0) exception = 0;
     show();
 }
 
 function drawExceptions() {
+    //tegner opp tabell med 2 inputs per row
+    //lagrer inputs i lokale variabler?
     let html = ``;
     let table = ``;
     for (let i = 0; i < exception; i++) {
@@ -135,6 +163,7 @@ function drawRound() {
 
 function sortTable() {
     // sorterer tabellen laveste score ligger øverst
+    // brukes på result view 
     var table, rows, switching, i, a, b, x, y, shouldSwitch;
     table = document.getElementById('scoreCard');
     switching = true;
@@ -145,9 +174,39 @@ function sortTable() {
             shouldSwitch = false;
             a = rows[i];
             b = rows[(i + 1)];
-            x = a.children[3];
-            y = b.children[3];
+            x = a.children[1];
+            y = b.children[1];
             if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            a.parentNode.insertBefore(b, a);
+            switching = true;
+        }
+    }
+}
+
+function sortTableRound() {
+    // sorterer tabellen laveste score ligger øverst (utifra forrige hulls utregning?)
+    if (hull == 1) return;
+    var table, rows, switching, a, b, c, d, e, f, g, shouldSwitch;
+    table = document.getElementById('scoreCard');
+    switching = true;
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (let i = 0; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            a = rows[i];
+            b = rows[(i + 1)];
+            c = parseInt(scoreCard[i][(hull - 1)]);
+            d = baner[selected][(hull - 1)];
+            e = (c - d);
+            f = parseInt(scoreCard[(i + 1)][(hull - 1)]);
+            g = (f - d);            
+            if (e > g) {
                 shouldSwitch = true;
                 break;
             }
@@ -168,9 +227,10 @@ function bytteHull(n) {
     if (hull >= b.length - 1) hull = b.length - 1;
     
     show();
+    sortTableRound();
 }
 function roundPlayers() {
-    //skal lage en tabell for players med knapper for antall kast og par-utregning + total
+    //lager en tabell for players med knapper for antall kast og par-utregning + total
     let table = ``;
     let tr = ``;
     for (let i = 0; i < players.length; i++) {
@@ -178,7 +238,7 @@ function roundPlayers() {
         let b = (a) - (baner[selected][hull]);
         tr += `<tr><td>${players[i]}</td>
             <td><input type="number" id="antall" name="antall" min="0" value="${a}" oninput="setAntall(this.value, ${i})"></td>
-            <td>${b}</td><td>${regnUtTotal(i)+b}</td></tr>`
+            <td>${b}</td><td>${regnUtTotal(i)}</td></tr>`
     }
     table = `<table id="scoreCard"><th>Navn</th><th>Score</th><th>Par</th><th>Total</th>${tr}</table>`
     return table;
@@ -191,13 +251,17 @@ function setAntall(antall, i) {
 }
 
 function regnUtTotal(n) {
-    //regner ut total score ut ifra hullet du er på/ kommet til
-    //skriv om så den regner ut total uten de med 0*
+    //regner ut total score for de hullene som har antall kast verdi
     let sum = 0;
-    for (let i = 1; i < (hull); i++) {
-        sum += (scoreCard[n][i]) - (baner[selected][i]);
+    for (let i = 1; i < baner[selected].length; i++) {
+        a = parseInt(scoreCard[n][i])
+        b = baner[selected][i]
+        if (a != 0) {
+            sum += a - b;
+        }
     }
     return sum;
+
 }
 
 function createRoundArray() {
@@ -221,6 +285,7 @@ function endRound() {
     result = true;
 
     show();
+    sortTable();
 }
 
 function drawResult() {
@@ -237,10 +302,16 @@ function drawResult() {
     html = `<h1>${baner[selected][0]}</h1>
             <br><br>
             ${table}
+            <br><br>
             <button onclick="back()">Tilbake</button>
             <button onclick="newRound()">Ny Runde</button>
 `
+    console.log(table)
     return html;
+}
+
+function sortResultTable() {
+
 }
 
 function newRound() {
@@ -272,5 +343,13 @@ function back() {
         roundOn = true;
         show();
         return;
+    }
+    if (fieldForm) {
+        fieldForm = false;
+        fieldAdd = '';
+        fieldHoles = 0;
+        exception = 0;
+        main = true;
+        show();
     }
 }
