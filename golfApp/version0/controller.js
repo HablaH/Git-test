@@ -197,14 +197,14 @@ function sortTableRound() {
     while (switching) {
         switching = false;
         rows = table.rows;
-        for (let i = 0; i < (rows.length - 1); i++) {
+        for (let i = 1; i < (rows.length - 1); i++) {
             shouldSwitch = false;
             a = rows[i];
             b = rows[(i + 1)];
-            c = parseInt(scoreCard[i][(hull - 1)]);
+            c = parseInt(scoreCard[(i - 1)][(hull - 1)]);
             d = baner[selected][(hull - 1)];
             e = (c - d);
-            f = parseInt(scoreCard[(i + 1)][(hull - 1)]);
+            f = parseInt(scoreCard[(i)][(hull - 1)]);
             g = (f - d);            
             if (e > g) {
                 shouldSwitch = true;
@@ -227,7 +227,7 @@ function bytteHull(n) {
     if (hull >= b.length - 1) hull = b.length - 1;
     
     show();
-    sortTableRound();
+    //sortTableRound();
 }
 function roundPlayers() {
     //lager en tabell for players med knapper for antall kast og par-utregning + total

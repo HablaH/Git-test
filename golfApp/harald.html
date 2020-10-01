@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const model = {
+            currentPerson: 1,
+            currentField: 1,
+            sortField: 'result',
+            ascending: true,
+            fields: [{
+                id: 1,
+                name: 'Kvitsund',
+                parValues: [3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 3, 4, 3, 3, 3, 3]
+            }, {
+                id: 2,
+                name: 'Stavern',
+                parValues: [3, 3, 3, 2, 3, 3, 3, 3, 3, 5, 3, 3, 3, 4, 3, 3, 3, 3]
+            }, ],
+            score: [{
+                person: 1,
+                field: 1,
+                holeIndex: 0,
+                result: 7,
+            }, {
+                person: 1,
+                field: 1,
+                holeIndex: 1,
+                result: 3,
+            }, {
+                person: 1,
+                field: 1,
+                holeIndex: 2,
+                result: 4,
+            }, {
+                person: 2,
+                field: 1,
+                holeIndex: 2,
+                result: 4,
+            }, ],
+        };
+
+        updateView();
+
+        function updateView() {
+            let html = '';
+            let scores = model.score.filter(
+                score => score.person === model.currentPerson &&
+                score.field === model.currentField);
+            let sortFunction = model.ascending ?
+                (a, b) => a[model.sortField] - b[model.sortField] :
+                (a, b) => b[model.sortField] - a[model.sortField];
+            scores.sort(sortFunction);
+            for (let i = 0; i < scores.length; i++) {
+                let score = scores[i];
+                html += `<li>Person ${score.person} Bane ${score.field} Hole ${score.holeIndex} Result ${score.result}</li>`;
+            }
+            document.getElementById('app').innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>
