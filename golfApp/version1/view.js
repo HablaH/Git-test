@@ -42,7 +42,11 @@ function drawPlayers() {
     //input til navn + table konstruksjon for navnene som blir lagret i players array
     let table = ``;
     let tr = ``
-    for (let i = 0; i < model.playerList.length; i++) {
+    let sortedScores = (model.holeIndex == 0) ?
+        sortScores(getScores(model.currentHole)).map(ele => ele.player) :
+        sortScores(getScores(model.currentHole - 1)).map(ele => ele.player);
+
+    for (let i = 0; i < sortedScroes.length; i++) {
         tr += `<tr><td>${model.playerList[i]}<button onclick="removePlayer(${i})">X</button></td></tr>`
     }
     table = `<table><th>Spiller</th>${tr}</table>`
@@ -88,7 +92,7 @@ function drawExceptions() {
             <tr><th>hull#</th><th>par</th></tr>
             ${table}
             </table`
-    return (exception == 0) ? '' : html;
+    return (model.fieldVariables.exceptions == 0) ? '' : html;
 }
 
 //Round view
@@ -97,10 +101,10 @@ function drawRound() {
     //players tabell med antall slag og par utregning og total (roundPlayers())
     //knapp som går tilbake til main og knapp som avslutter spillet -> resultat
 
-    let html = `<h1>${baner[selected][0]}</h1>
+    let html = `<h1>${model.fields[model.currentField].name}</h1>
             <div style="display:flex">
                 <button onclick="bytteHull(-1)"><</button>
-                <p>Hull ${hull} Par ${baner[selected][hull]}</p>
+                <p>Hull ${model.currentHole} Par ${model.fields[model.currentField].parValues[model.currentHole]}</p>
                 <button onclick="bytteHull(+1)">></button>
             </div>
             <br><br>
@@ -115,19 +119,20 @@ function drawRound() {
     return html;
 }
 
-function drawPlayers() {
-    //input til navn + table konstruksjon for navnene som blir lagret i players array
+function roundPlayers() {
+    //lager en tabell for players med knapper for antall kast og par-utregning + total
     let table = ``;
-    let tr = ``
-    for (let i = 0; i < players.length; i++) {
-        tr += `<tr><td>${players[i]}<button onclick="removePlayer(${i})">X</button></td></tr>`
+    let tr = ``;
+    let lastScore = getScores(model.currentHole - 1);
+    let score = getScore(model.currentHole);
+    for (let i = 0; i < model.playerList.length; i++) {
+        let b = (a) - (baner[selected][hull]);
+        tr += `<tr><td>${players[i]}</td>
+            <td><input type="number" id="antall" name="antall" min="0" value="${a}" oninput="setAntall(this.value, ${i})"></td>
+            <td>${b}</td><td>${totalScore(i)}</td></tr>`
     }
-    table = `<table><th>Spiller</th>${tr}</table>`
-    let html = `<input type="text" id="playerName name="playerName" value="" oninput="playerAdd = this.value">
-                <button onclick="addPlayer(playerAdd)">+</button><br><br>
-                <div>${table}</div><br><br>`
-        ;
-    return html;
+    table = `<table id="scoreCard"><th>Navn</th><th>Score</th><th>Par</th><th>Total</th>${tr}</table>`
+    return table;
 }
 
 //result view

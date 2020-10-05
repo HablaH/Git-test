@@ -1,0 +1,16 @@
+createScoreCard();
+changeScore(0,4);
+changeScore(1,3);
+changeScore(2,5);
+model.currentHole = 1;
+changeScore(0,2);
+changeScore(1,3);
+changeScore(2,5);
+model.currentHole = 2;
+changeScore(0,5);
+changeScore(1,4);
+changeScore(2,2);
+model.currentHole = 3;
+changeScore(0,7);
+changeScore(1,2);
+changeScore(2,2);

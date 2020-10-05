@@ -5,6 +5,8 @@ const model = {
     playerList: ['Harald','Gunnar','Andreas'],
     fieldVariables: {name:'',holes:0, exceptions: 0,parValues: []},
     player: '',
+    sortField: 'result',
+    ascending: true,
     currentField: null,
     currentHole: 0,
     fields: [{

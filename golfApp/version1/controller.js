@@ -14,7 +14,7 @@ function startRound() {
     //går fra mainscreen til roundscreen
     model.view.main = false;
     model.view.round = true;
-    createRoundArray();
+    createScoreCard();
     show();
 }
 
@@ -29,6 +29,21 @@ function createScoreCard() {
             model.score.push({ 'player': i, 'field': currentField, 'holeIndex': h, 'result': 0, });
         }
     }
+}
+
+function getScores(n) {
+    let scores = model.score.filter(
+        score => score.field === model.currentField
+            && score.holeIndex === n);
+    return scores;
+}
+
+function sortScores(scores) {
+    let sortFunction = model.ascending ?
+        (a, b) => a[model.sortField] - b[model.sortField] :
+        (a, b) => b[model.sortField] - a[model.sortField];
+    scores.sort(sortFunction);
+    return scores;
 }
 
 function changeScore(player, n) {
@@ -61,7 +76,7 @@ function addField() {
 
 function saveField() {
     //lagrer verdiene fra addField i array baner
-    baner.push(saveFieldFunc());
+    saveFieldFunc();
     model.view.addField = false;
     model.view.main = true;
     show();
@@ -69,19 +84,25 @@ function saveField() {
 }
 function saveFieldFunc() {
     //lager en array av verdiene fra addField
-    let a = [];
-    a.push(fieldAdd);
-    for (let i = 0; i < fieldHoles; i++) {
-        a.push(3);
+    for (let i = 0; i < model.fieldVariables.holes; i++) {
+        model.fieldVariables.parValues.push(3);
     }
-    for (let i = 0; i < exception; i++) {
+    for (let i = 0; i < model.fieldVariables.exceptions; i++) {
         let str = "index = document.getElementById('unntakIndex" + i + "')"
         eval(str);
         str = "par = document.getElementById('unntakPar" + i + "')"
         eval(str);
-        a.splice(parseInt(index.value), 1, parseInt(par.value))
+        model.fieldVariables.parValues.splice(parseInt(index.value), 1, parseInt(par.value))
     }
-    return a;
+
+    model.fields.push(
+        {
+            'id': model.fields.length,
+            'name': model.fieldVariables.name,
+            'parValues': model.fieldVariables.parValues
+        }
+    );
+    return;
 }
 //hjelpefunksjoner til addField
 function exceptionCount(n) {
@@ -91,13 +112,14 @@ function exceptionCount(n) {
     show();
 }
 
-function bytteHull(n) {
+function changeCurrentHole(n) {
     //navigerer frem og tilbake mellom hullene ved hjelp av hull variabelen 
-    let b = baner[selected];
+    let b = model.fields[selectedHole].parValues;
+    let hole = model.currentHole;
 
-    hull = hull + n;
-    if (hull <= 1) hull = 1;
-    if (hull >= b.length - 1) hull = b.length - 1;
+    hole = hole + n;
+    if (hole <= 1) hole = 1;
+    if (hole >= b.length - 1) hole = b.length - 1;
 
     show();    
 }
