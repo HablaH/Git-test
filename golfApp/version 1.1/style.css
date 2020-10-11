@@ -1,0 +1,51 @@
+﻿body
+{
+    background-size:cover;
+    background-repeat: no-repeat; 
+}
+@media screen and (max-width: 400px){
+#app
+{
+    height:100%;
+    width:100%;
+}
+}
+
+#app
+{
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center; 
+    height: 100%;
+    width:  100%; 
+    
+}
+input[type=text]
+{
+width: 50%;
+}
+input[type=number]
+{
+width: 10%;
+}
+
+table, tr, td, th {
+    border: 1px solid rgba(0, 100, 0, 0.65);
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 4px;
+}
+
+th {
+    background-color: darkgreen;
+    border: 1px solid darkgreen;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background: rgba(0, 100, 0, 0.51);
+    color: white;
+}
