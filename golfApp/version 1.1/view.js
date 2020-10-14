@@ -94,9 +94,9 @@ function drawExceptions() {
 
 //Round view
 function drawRound() {
-    //output er navn p� valgt bane, hull med navigasjon.
+    //output er navn på valgt bane, hull med navigasjon.
     //players tabell med antall slag og par utregning og total (roundPlayers())
-    //knapp som g�r tilbake til main og knapp som avslutter spillet -> resultat
+    //knapp som går tilbake til main og knapp som avslutter spillet -> resultat
 
     let html = `<h1>${model.fields[model.currentField].name}</h1>
             <div style="display:flex">
